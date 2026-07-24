@@ -6,6 +6,7 @@ import org.example.springblogdemo.common.Constants;
 import org.example.springblogdemo.common.exception.BlogException;
 import org.example.springblogdemo.common.util.BeanTrans;
 import org.example.springblogdemo.common.util.JwtUtils;
+import org.example.springblogdemo.common.util.SecurityUtils;
 import org.example.springblogdemo.mapper.BlogInfoMapper;
 import org.example.springblogdemo.pojo.dataobject.BlogInfo;
 import org.example.springblogdemo.pojo.dataobject.UserInfo;
@@ -54,13 +55,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
         if (userInfo==null || userInfo.getId()==null){
             throw new BlogException("用户不存在");
         }
-        if (!request.getPassword().equals(userInfo.getPassword())){
+        if (!SecurityUtils.verify(
+                request.getPassword(),
+                userInfo.getPassword())){
             throw new BlogException("密码不正确");
         }
-//        if (!SecurityUtils.verify(request.getPassword(), userInfo.getPassword())){
-//            throw new BlogException("密码不正确");
-//        }
-        //账号密码正确
+        //账号密码正确F
         Map<String, Object> claim = new HashMap<>();
         claim.put("id", userInfo.getId());
         claim.put("name", userInfo.getUserName());
