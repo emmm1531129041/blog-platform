@@ -14,20 +14,17 @@ import org.example.springblogdemo.service.BlogInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
-/**
-* @author 张童
-* @description 针对表【blog_info(博客表)】的数据库操作Service实现
-* @createDate 2026-07-19 17:36:18
-*/
 
+
+//ServiceImpl这个是MyBatis-Plus提供的
+//它已经帮忙写好了很多CRUD
 @Service
 public class BlogInfoServiceImpl extends ServiceImpl<BlogInfoMapper, BlogInfo>
         implements BlogInfoService {
     @Autowired
     private BlogInfoMapper blogInfoMapper;
-    @Autowired
-    private UserInfoMapper userInfoMapper;
 
+    //查询博客列表的具体实现
     @Override
     public List<BlogInfoResponse> getListByDesc() {
         //查询 blog_info 表里面所有没有被删除的博客，并且按照 id 降序排列
@@ -45,14 +42,18 @@ public class BlogInfoServiceImpl extends ServiceImpl<BlogInfoMapper, BlogInfo>
 
     @Override
     public BlogInfoResponse getBlogDetail(Integer blogId) {
-        BlogInfo blogInfo = blogInfoMapper.selectOne(new LambdaQueryWrapper<BlogInfo>()
-                .eq(BlogInfo::getId, blogId).eq(BlogInfo::getDeleteFlag, Constants.NOT_DELETE));
+        BlogInfo blogInfo = blogInfoMapper.selectOne(
+                new LambdaQueryWrapper<BlogInfo>()
+                .eq(BlogInfo::getId, blogId)
+                .eq(BlogInfo::getDeleteFlag, Constants.NOT_DELETE)
+        );
         if (blogInfo==null){
             throw new BlogException("博客不存在");
         }
         return BeanTrans.trans(blogInfo);
     }
 
+    //发布博客
     @Override
     public Boolean addBlog(AddBlogInfoRequest addBlogInfoRequest) {
         BlogInfo blogInfo = BeanTrans.trans(addBlogInfoRequest);
@@ -78,6 +79,7 @@ public class BlogInfoServiceImpl extends ServiceImpl<BlogInfoMapper, BlogInfo>
         }
     }
 
+    //执行逻辑删除
     @Override
     public Boolean delete(Integer blogId) {
         BlogInfo blogInfo = new BlogInfo();

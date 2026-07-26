@@ -8,17 +8,15 @@ import org.example.springblogdemo.pojo.request.UserLoginRequest;
 import org.example.springblogdemo.pojo.response.UserInfoResponse;
 import org.example.springblogdemo.pojo.response.UserLoginResponse;
 
-/**
- * @author lucf
- * @description 针对表【user_info(用户表)】的数据库操作Service
- * @createDate 2026-05-09 21:16:44
- */
-public interface UserInfoService extends IService<UserInfo> {
 
+public interface UserInfoService extends IService<UserInfo> {
+    //登录
     UserLoginResponse login(UserLoginRequest request);
 
+    //获取用户信息
     UserInfoResponse getUserInfo(@NotNull Integer userId);
 
+    //获取作者信息
     UserInfoResponse getAuthorInfo(@NotNull Integer blogId);
 }
 
