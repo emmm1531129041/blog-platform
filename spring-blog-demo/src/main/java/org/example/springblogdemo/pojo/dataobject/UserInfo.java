@@ -13,40 +13,19 @@ import lombok.Data;
 @TableName(value ="user_info")
 @Data
 public class UserInfo {
-    /**
-     * 
-     */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 
-     */
     private String userName;
 
-    /**
-     * 
-     */
     private String password;
 
-    /**
-     * 
-     */
     private String githubUrl;
 
-    /**
-     * 
-     */
     private Integer deleteFlag;
 
-    /**
-     * 
-     */
     private Date createTime;
 
-    /**
-     * 
-     */
     private Date updateTime;
 
     @Override

@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
+//强制登录
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
     @Autowired

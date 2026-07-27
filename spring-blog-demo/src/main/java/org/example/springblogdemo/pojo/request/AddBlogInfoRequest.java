@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 
+//接收前端参数
 @Data
 public class AddBlogInfoRequest {
     @NotNull(message = "作者ID不能为空")

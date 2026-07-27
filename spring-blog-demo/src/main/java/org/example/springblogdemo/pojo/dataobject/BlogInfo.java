@@ -6,43 +6,24 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 import lombok.Data;
 
-import static com.baomidou.mybatisplus.core.toolkit.IdWorker.getId;
 
-/**
- * 博客表
- * @TableName blog_info
- */
+//告诉 MyBatis-Plus：这个 Java 类对应数据库里的 blog_info 表
 @TableName(value ="blog_info")
 @Data
 public class BlogInfo {
-    /**
-     * 
-     */
     @TableId(type = IdType.AUTO)
     private Integer id;
-    /**
-     * 
-     */
+
     private String title;
-    /**
-     * 
-     */
+
     private String content;
-    /**
-     * 
-     */
+
     private Integer userId;
-    /**
-     * 
-     */
+
     private Integer deleteFlag;
-    /**
-     * 
-     */
+
     private Date createTime;
-    /**
-     * 
-     */
+
     private Date updateTime;
 
     @Override

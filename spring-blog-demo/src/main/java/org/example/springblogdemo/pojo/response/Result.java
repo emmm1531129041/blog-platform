@@ -3,6 +3,7 @@ package org.example.springblogdemo.pojo.response;
 import lombok.Data;
 import org.example.springblogdemo.common.enums.ResultCodeEnum;
 
+//统一返回格式
 @Data
 public class Result<T> {
     private int code; //业务码, 不是http状态码

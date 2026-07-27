@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import java.util.Map;
 
-
 //ServiceImpl这个是MyBatis-Plus提供的
 //它已经帮忙写好了很多CRUD
 @Service
@@ -65,6 +64,22 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
         return userInfoMapper.selectOne(wrapper);
     }
 
+    //根据用户id查用户完整信息
+    public UserInfo getUserInfoById(Integer userId){
+        LambdaQueryWrapper wrapper =
+                new LambdaQueryWrapper<UserInfo>()
+                        .eq(UserInfo::getId, userId)
+                        .eq(UserInfo::getDeleteFlag, Constants.NOT_DELETE);
+        return userInfoMapper.selectOne(wrapper);
+    }
+
+    //根据blogId, 获取博客信息
+    public BlogInfo getBlogInfoById(Integer blogId){
+        BlogInfo blogInfo = blogInfoMapper.selectOne(new LambdaQueryWrapper<BlogInfo>()
+                .eq(BlogInfo::getId, blogId).eq(BlogInfo::getDeleteFlag, Constants.NOT_DELETE));
+        return blogInfo;
+    }
+
     //获取作者信息
     @Override
     public UserInfoResponse getAuthorInfo(Integer blogId) {
@@ -85,24 +100,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo>
         }
         return BeanTrans.trans(userInfo);
     }
-
-
-    //根据用户id查用户完整信息
-    public UserInfo getUserInfoById(Integer userId){
-        LambdaQueryWrapper wrapper =
-                new LambdaQueryWrapper<UserInfo>()
-                .eq(UserInfo::getId, userId)
-                .eq(UserInfo::getDeleteFlag, Constants.NOT_DELETE);
-        return userInfoMapper.selectOne(wrapper);
-    }
-
-    //根据blogId, 获取博客信息
-    public BlogInfo getBlogInfoById(Integer blogId){
-        BlogInfo blogInfo = blogInfoMapper.selectOne(new LambdaQueryWrapper<BlogInfo>()
-                .eq(BlogInfo::getId, blogId).eq(BlogInfo::getDeleteFlag, Constants.NOT_DELETE));
-        return blogInfo;
-    }
-
 }
 
 

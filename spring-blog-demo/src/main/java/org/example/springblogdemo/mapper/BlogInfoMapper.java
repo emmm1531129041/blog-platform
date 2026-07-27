@@ -10,6 +10,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2026-07-19 17:36:18
 * @Entity org.example.springblogdemo.pojo.dataobject.BlogInfo
 */
+//为什么需要泛型 BlogInfo?
+//这个Mapper操作的是BlogInfo这张表
 @Mapper
 public interface BlogInfoMapper extends BaseMapper<BlogInfo> {
 

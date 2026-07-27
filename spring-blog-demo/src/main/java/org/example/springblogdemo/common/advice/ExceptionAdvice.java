@@ -13,9 +13,11 @@ import org.springframework.web.method.annotation.HandlerMethodValidationExceptio
 import java.util.ArrayList;
 import java.util.List;
 
+//统一处理异常
 @Slf4j
 @RestControllerAdvice
 public class ExceptionAdvice {
+    //普通异常,抓所有异常
     @ExceptionHandler(exception = Exception.class)
     public Result handlerException(Exception e){
         log.error("发生异常, e:", e);
