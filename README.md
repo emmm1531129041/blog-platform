@@ -193,7 +193,7 @@ http://localhost:8080/blog_login.html
 
 # 📸 项目展示
 
-（这里放登录页、博客首页、编辑页截图）
-<img width="1279" height="734" alt="image" src="https://github.com/user-attachments/assets/266bb500-0fab-4f81-bf7c-0ae0685c94be" />
+（登录页、博客首页、编辑页截图展示）
+<img width="1277" height="734" alt="image" src="https://github.com/user-attachments/assets/7584d8ae-00d0-4aa0-a315-e760f990b34f" />
 <img width="1278" height="673" alt="image" src="https://github.com/user-attachments/assets/95e593d6-b333-4996-a5c5-2f2d7e542e9f" />
-
+<img width="1268" height="674" alt="image" src="https://github.com/user-attachments/assets/35085a55-5c83-4af6-a76a-07683ffd70f5" />
