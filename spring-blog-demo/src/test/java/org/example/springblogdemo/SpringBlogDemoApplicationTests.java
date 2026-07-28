@@ -13,20 +13,21 @@ class SpringBlogDemoApplicationTests {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
-
     @Test
     void updatePassword() {
-        // 原密码
-        String password = "123456";
-        // 加密
-        String encryptPassword = SecurityUtils.encrypt(password);
-        System.out.println(encryptPassword);
-        // 查询用户（假设id=1）
-        UserInfo userInfo = userInfoMapper.selectById(1);
-        // 修改密码
-        userInfo.setPassword(encryptPassword);
-        // 更新数据库
-        userInfoMapper.updateById(userInfo);
-    }
+        //需要处理的用户id
+        int[] ids = {1, 2};
 
+        for (int id : ids) {
+            UserInfo userInfo = userInfoMapper.selectById(id);
+            if (userInfo == null) {
+                continue;
+            }
+            //假设原密码都是123456
+            String password = "123456";
+            String encryptPassword = SecurityUtils.encrypt(password);
+            userInfo.setPassword(encryptPassword);
+            userInfoMapper.updateById(userInfo);
+        }
+    }
 }
